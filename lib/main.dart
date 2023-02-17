@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:g3_project/screens/Home/home.dart';
 import 'package:g3_project/screens/Login/login.dart';

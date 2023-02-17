@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "103660134251",
+    "project_id": "streethub-eb0e7",
+    "storage_bucket": "streethub-eb0e7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:103660134251:android:7d32789f576b5cbef9762e",
+        "android_client_info": {
+          "package_name": "g3.s2am.g3_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "103660134251-ccr1cjfn37rfj2qcjdk9ka30c3bnut8a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkAYh1OjB_r0bqIi4ri_cZ9UE6EJl_B_o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "103660134251-ccr1cjfn37rfj2qcjdk9ka30c3bnut8a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

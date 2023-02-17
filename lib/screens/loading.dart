@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:g3_project/screens/Home/home.dart';
+import 'package:g3_project/screens/Login/login.dart';
 
 class Loading extends StatefulWidget {
   const Loading({Key? key}) : super(key: key);
@@ -10,6 +12,7 @@ class Loading extends StatefulWidget {
 class _LoadingState extends State<Loading> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    //TODO: Return either Home or Login screen
+    return const Login();
   }
 }
