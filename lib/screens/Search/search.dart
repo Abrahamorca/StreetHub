@@ -243,3 +243,39 @@ class _Search extends State<Search> {
     );
   }
 }
+
+
+
+// EJEMPLO
+// @override
+//   Widget buildSuggestions(BuildContext context) {
+
+//     return FutureBuilder(
+//       future: peliculasProvider.buscarActor(query),
+//       builder: (BuildContext context, AsyncSnapshot<List<Actor>> snapshot) {
+//         if (snapshot.hasData) {
+//           final peliculas = snapshot.data;
+
+//           return ListView(
+//               children: peliculas.map((pelicula) {
+//             return ListTile(
+//               leading: FadeInImage(
+//                 image: NetworkImage(pelicula.getFoto()),
+//                 placeholder: AssetImage('assets/img/no-image.jpg'),
+//                 width: 50.0,
+//                 fit: BoxFit.contain,
+//               ),
+//               title: Text(pelicula.name),
+//               onTap: () {
+//                 close(context, null);
+//                 pelicula.creditId = '';
+//                 Navigator.pushNamed(context, 'detalle', arguments: pelicula);
+//               },
+//             );
+//           }).toList());
+//         } else {
+//           return Center(child: CircularProgressIndicator());
+//         }
+//       },
+//     );
+//   }
