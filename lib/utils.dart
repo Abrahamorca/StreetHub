@@ -1,0 +1,1 @@
+const int backgroundLoginColor = 0xffe1dfdf;
