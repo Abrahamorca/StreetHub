@@ -5,6 +5,7 @@ import 'package:g3_project/utils.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
+  static const String routeName = '/signIn';
 
   @override
   State<SignIn> createState() => _SignInState();

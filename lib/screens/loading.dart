@@ -3,6 +3,7 @@ import 'package:g3_project/screens/Login/sign_in.dart';
 
 class Loading extends StatefulWidget {
   const Loading({Key? key}) : super(key: key);
+  static const String routeName = '/loading';
 
   @override
   State<Loading> createState() => _LoadingState();
