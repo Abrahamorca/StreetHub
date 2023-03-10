@@ -1,38 +1,47 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong2/latlong.dart';
+import 'package:g3_project/screens/Home/search.dart';
+
 import 'package:location/location.dart';
 import 'package:g3_project/screens/Home/home.dart';
 
-class Search extends StatefulWidget {
-  const Search({Key? key}) : super(key: key);
-  static const String routeName = '/search';
+class Score extends StatefulWidget {
+  const Score({Key? key}) : super(key: key);
+  static const String routeName = '/score';
 
   @override
-  State<Search> createState() => _SearchState();
+  State<Score> createState() => _ScoreState();
 }
 
-class _SearchState extends State<Search> {
-  LocationData? _locationData;
-  int _selectedIndex = 1;
-  late TextEditingController _searchQueryController;
+class _ScoreState extends State<Score> {
+  int _selectedIndex = 2;
+  final List<Player> _players = [
+    Player(name: "Guillem Pedret", score: 100),
+    Player(name: "Abraham Ortega", score: 80),
+    Player(name: "Carles Pellitero", score: 70),
+    Player(name: "Josep Fiestas", score: 60),
+    Player(name: "Alejandro Becerra", score: 50),
+    Player(name: "David Salcedo", score: 40),
+    Player(name: "Javier Carrascosa", score: 30),
+    Player(name: "Albert Pineda", score: 20),
+    Player(name: "Sergi Carreras", score: 10),
+  ];
 
   @override
   void initState() {
     super.initState();
-    _searchQueryController = TextEditingController();
   }
 
   @override
   void dispose() {
-    _searchQueryController.dispose();
     super.dispose();
   }
 
   void _onItemTapped(int index) {
-    const List<Widget> Screens = [      Home(),      Search(),    ];
+    const List<Widget> Screens = [
+      Home(),
+      Search(),
+      Score(),
+    ];
     setState(() {
       _selectedIndex = index;
     });
@@ -41,60 +50,84 @@ class _SearchState extends State<Search> {
       MaterialPageRoute(builder: (context) => Screens[index]),
     );
   }
-
-  void _searchPressed() {
-    // TODO: Implement search functionality
-  }
-
-  Widget _buildSearchField() {
-    return TextField(
-      controller: _searchQueryController,
-      autofocus: true,
-      decoration: const InputDecoration(
-        hintText: 'Search...',
-        border: InputBorder.none,
-        hintStyle: TextStyle(color: Colors.white),
-      ),
-      style: const TextStyle(color: Colors.white, fontSize: 16.0),
-      onChanged: (query) {
-        // TODO: Implement search functionality
-      },
-    );
-  }
-
-  Widget _buildSearchBar() {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.grey,
-        borderRadius: BorderRadius.circular(30.0),
-      ),
-      child: Row(
-        children: <Widget>[
-          SizedBox(width: 15),
-          const Icon(
-            Icons.search,
-            color: Colors.white,
-          ),
-          SizedBox(width: 10.0),
-          Expanded(
-            child: _buildSearchField(),
-          ),
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Column(
+      body: Stack(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 50, left: 15, right: 15),
-            child: _buildSearchBar(),
+          Positioned.fill(
+            child: Container(
+              color: Colors.grey[300],
+            ),
           ),
-
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: MediaQuery.of(context).padding.bottom +
+                kBottomNavigationBarHeight,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(16.0),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: const Radius.circular(16.0),
+                      bottomRight: const Radius.circular(16.0),
+                    ),
+                  ),
+                  child: Text(
+                    "Leaderboard",
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16.0,
+                      vertical: 8.0,
+                    ),
+                    child: ListView.builder(
+                      itemCount: _players.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        final player = _players[index];
+                        return Container(
+                          margin: const EdgeInsets.symmetric(
+                            vertical: 4.0,
+                          ),
+                          padding: const EdgeInsets.all(8.0),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(16.0),
+                          ),
+                          child: ListTile(
+                            leading: Text(
+                              "${index + 1}",
+                              style: TextStyle(fontSize: 16.0),
+                            ),
+                            title: Text(
+                              player.name,
+                              style: TextStyle(fontSize: 16.0),
+                            ),
+                            trailing: Text(
+                              "${player.score}",
+                              style: TextStyle(fontSize: 16.0),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -130,4 +163,11 @@ class _SearchState extends State<Search> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
+}
+
+class Player {
+  final String name;
+  final int score;
+
+  Player({required this.name, required this.score});
 }

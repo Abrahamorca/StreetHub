@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:g3_project/firebase_options.dart';
 import 'package:g3_project/screens/Home/home.dart';
+import 'package:g3_project/screens/Home/score.dart';
 import 'package:g3_project/screens/Home/search.dart';
 import 'package:g3_project/screens/Login/login.dart';
 import 'package:g3_project/screens/Login/sign_in.dart';
@@ -28,7 +29,8 @@ Future<void> main() async {
       Routes.login: (context) => new Login(),
       Routes.home: (context) => new Home(),
       Routes.signIn: (context) => new SignIn(),
-      Routes.search: (context) => new Search()
+      Routes.search: (context) => new Search(),
+      Routes.score: (context) => new Score()
     },
   ),);
 }

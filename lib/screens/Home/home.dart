@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:g3_project/screens/Home/score.dart';
 import 'package:g3_project/screens/Home/search.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
@@ -54,6 +55,7 @@ class _HomeState extends State<Home> {
     const List<Widget> Screens = [
       Home(),
       Search(),
+      Score(),
     ];
     setState(() {
       _selectedIndex = index;
@@ -79,7 +81,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       body: _locationData == null
           ? Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(color: Colors.orange),
             )
           : FlutterMap(
               options: MapOptions(

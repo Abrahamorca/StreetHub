@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:g3_project/screens/Home/score.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
 import 'package:g3_project/screens/Home/home.dart';
@@ -32,7 +33,11 @@ class _SearchState extends State<Search> {
   }
 
   void _onItemTapped(int index) {
-    const List<Widget> Screens = [      Home(),      Search(),    ];
+    const List<Widget> Screens = [
+      Home(),
+      Search(),
+      Score()
+    ];
     setState(() {
       _selectedIndex = index;
     });
@@ -87,14 +92,13 @@ class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Column(
+      resizeToAvoidBottomInset: false,
+      body: Column(
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 50, left: 15, right: 15),
             child: _buildSearchBar(),
           ),
-
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -124,8 +128,8 @@ class _SearchState extends State<Search> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        backgroundColor: Colors.grey,
-        child: Icon(Icons.add, color: Colors.orange),
+        backgroundColor: Colors.orange,
+        child: Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
