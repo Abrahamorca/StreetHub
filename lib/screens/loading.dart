@@ -1,7 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:g3_project/models/user.dart';
-import 'package:g3_project/screens/Home/home.dart';
 import 'package:g3_project/screens/Login/sign_in.dart';
 import 'package:provider/provider.dart';
 class Loading extends StatelessWidget {
@@ -12,12 +10,6 @@ class Loading extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final user = Provider.of<UserModel?>(context);
-
-    //TODO: Return auth or home depending of user state
-    if (user == null) {
-      return const SignIn();
-    } else {
-      return const Home();
-    }
+    return const SignIn();
   }
 }
