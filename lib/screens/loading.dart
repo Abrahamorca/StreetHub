@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:g3_project/models/user.dart';
 import 'package:g3_project/screens/Home/home.dart';
+import 'package:g3_project/screens/Login/authenticate.dart';
 import 'package:g3_project/screens/Login/sign_in.dart';
 import 'package:provider/provider.dart';
 class Loading extends StatelessWidget {
@@ -15,7 +16,7 @@ class Loading extends StatelessWidget {
     bool notLoggedIn = (user == null);
 
     if (notLoggedIn) {
-      return const SignIn();
+      return const Authenticate();
     } else {
       return const Home();
     }

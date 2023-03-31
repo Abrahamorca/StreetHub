@@ -6,6 +6,8 @@ import 'package:g3_project/routes.dart';
 import 'package:g3_project/screens/Home/home.dart';
 import 'package:g3_project/screens/Home/score.dart';
 import 'package:g3_project/screens/Home/search.dart';
+import 'package:g3_project/screens/Login/authenticate.dart';
+import 'package:g3_project/screens/Login/register.dart';
 import 'package:g3_project/screens/Login/sign_in.dart';
 import 'package:g3_project/screens/Settings/settings.dart';
 import 'package:g3_project/screens/loading.dart';
@@ -31,15 +33,18 @@ class MyApp extends StatelessWidget {
       value: AuthService().user,
       child: MaterialApp(
         theme: ThemeData(
-            pageTransitionsTheme: const PageTransitionsTheme(builders: {
-          TargetPlatform.iOS: _NoAnimationPageTransitionsBuilder(),
-          TargetPlatform.android: _NoAnimationPageTransitionsBuilder(),
-        })),
+          pageTransitionsTheme: const PageTransitionsTheme(builders: {
+            TargetPlatform.iOS: _NoAnimationPageTransitionsBuilder(),
+            TargetPlatform.android: _NoAnimationPageTransitionsBuilder(),
+          }),
+        ),
         debugShowCheckedModeBanner: false,
         initialRoute: Routes.loading,
         routes: {
           Routes.loading: (context) => const Loading(),
           Routes.home: (context) => const Home(),
+          Routes.authenticate: (context) => const Authenticate(),
+          Routes.register: (context) => const Register(),
           Routes.signIn: (context) => const SignIn(),
           Routes.search: (context) => const Search(),
           Routes.score: (context) => const Score(),

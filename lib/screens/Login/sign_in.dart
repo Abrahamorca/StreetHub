@@ -66,7 +66,7 @@ class _SignInState extends State<SignIn> {
                   backgroundColor: const Color(signInButtonColor),
                 ),
                 child: const Text(
-                  'Sign In',
+                  'Register',
                 ),
               )
             ], // Column children
