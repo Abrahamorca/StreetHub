@@ -11,6 +11,13 @@ class Loading extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final user = Provider.of<UserModel?>(context);
-    return const Home();
+
+    bool notLoggedIn = (user == null);
+
+    if (notLoggedIn) {
+      return const SignIn();
+    } else {
+      return const Home();
+    }
   }
 }

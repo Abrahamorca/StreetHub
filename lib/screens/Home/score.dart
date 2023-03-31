@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:g3_project/screens/Home/search.dart';
+import 'package:g3_project/screens/Settings/settings.dart';
 
 import 'package:location/location.dart';
 import 'package:g3_project/screens/Home/home.dart';
@@ -41,6 +42,7 @@ class _ScoreState extends State<Score> {
       Home(),
       Search(),
       Score(),
+      Settings(),
     ];
     setState(() {
       _selectedIndex = index;

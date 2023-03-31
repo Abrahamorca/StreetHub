@@ -8,7 +8,7 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   //Create User obj based on FirebaseUser
-  UserModel? _userFromFirebaseUser (User user) {
+  UserModel? _userFromFirebaseUser(User user) {
     if (user != null) {
       return UserModel(uid: user.uid);
     } else {
@@ -17,8 +17,9 @@ class AuthService {
   }
 
   //auth change user stream
-  Stream<UserModel?> get user  {
-    return _auth.authStateChanges()
+  Stream<UserModel?> get user {
+    return _auth
+        .authStateChanges()
         .map((User? user) => _userFromFirebaseUser(user!));
   }
 
@@ -41,5 +42,15 @@ class AuthService {
 
 //TODO: register with email and password method
 
-//TODO: sign out method
+  // sign out
+  Future signOut() async {
+    try {
+      return await _auth.signOut();
+    } catch (e) {
+      if (kDebugMode) {
+        print(e.toString());
+      }
+      return;
+    }
+  }
 }

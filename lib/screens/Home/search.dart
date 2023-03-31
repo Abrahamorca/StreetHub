@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:g3_project/screens/Home/score.dart';
+import 'package:g3_project/screens/Settings/settings.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
 import 'package:g3_project/screens/Home/home.dart';
@@ -36,7 +37,8 @@ class _SearchState extends State<Search> {
     const List<Widget> Screens = [
       Home(),
       Search(),
-      Score()
+      Score(),
+      Settings()
     ];
     setState(() {
       _selectedIndex = index;

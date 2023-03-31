@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:g3_project/screens/Home/score.dart';
 import 'package:g3_project/screens/Home/search.dart';
+import 'package:g3_project/screens/Settings/settings.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
 
@@ -59,6 +60,7 @@ class _HomeState extends State<Home> {
       Home(),
       Search(),
       Score(),
+      Settings()
     ];
     setState(() {
       _selectedIndex = index;
@@ -106,9 +108,7 @@ class _HomeState extends State<Home> {
                 height: 80.0,
                 point: LatLng(
                     _locationData!.latitude!, _locationData!.longitude!),
-                builder: (ctx) => Container(
-                  child: const Icon(Icons.sports_basketball, color: Colors.orange),
-                ),
+                builder: (ctx) => const Icon(Icons.sports_basketball, color: Colors.orange),
               ),
             ],
           ),
@@ -142,7 +142,7 @@ class _HomeState extends State<Home> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         backgroundColor: Colors.orange,
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
