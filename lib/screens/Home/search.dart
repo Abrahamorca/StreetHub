@@ -7,6 +7,8 @@ import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
 import 'package:g3_project/screens/Home/home.dart';
 
+import '../../routes.dart';
+
 class Search extends StatefulWidget {
   const Search({Key? key}) : super(key: key);
   static const String routeName = '/search';
@@ -127,7 +129,9 @@ class _SearchState extends State<Search> {
         onTap: _onItemTapped,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, Routes.game);
+        },
         backgroundColor: Colors.orange,
         child: Icon(Icons.add),
       ),

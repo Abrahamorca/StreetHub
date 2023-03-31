@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:g3_project/routes.dart';
 import 'package:g3_project/screens/Home/score.dart';
 import 'package:g3_project/screens/Home/search.dart';
+import 'package:g3_project/screens/Matches/options_match.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
 
@@ -137,7 +139,9 @@ class _HomeState extends State<Home> {
         onTap: _onItemTapped,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, Routes.game);
+        },
         backgroundColor: Colors.orange,
         child: Icon(Icons.add),
       ),

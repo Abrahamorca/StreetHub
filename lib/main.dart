@@ -6,6 +6,7 @@ import 'package:g3_project/screens/Home/score.dart';
 import 'package:g3_project/screens/Home/search.dart';
 import 'package:g3_project/screens/Login/login.dart';
 import 'package:g3_project/screens/Login/sign_in.dart';
+import 'package:g3_project/screens/Matches/options_match.dart';
 import 'package:g3_project/screens/loading.dart';
 import 'package:g3_project/routes.dart';
 
@@ -30,7 +31,8 @@ Future<void> main() async {
       Routes.home: (context) => new Home(),
       Routes.signIn: (context) => new SignIn(),
       Routes.search: (context) => new Search(),
-      Routes.score: (context) => new Score()
+      Routes.score: (context) => new Score(),
+      Routes.game: (context) => new GameScreen()
     },
   ),);
 }
