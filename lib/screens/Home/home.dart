@@ -6,6 +6,7 @@ import 'package:g3_project/routes.dart';
 import 'package:g3_project/screens/Home/score.dart';
 import 'package:g3_project/screens/Home/search.dart';
 import 'package:g3_project/screens/Matches/options_match.dart';
+import 'package:g3_project/screens/Settings/main_settings.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
 
@@ -58,6 +59,7 @@ class _HomeState extends State<Home> {
       Home(),
       Search(),
       Score(),
+      SettingsScreen()
     ];
     setState(() {
       _selectedIndex = index;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:g3_project/screens/Home/search.dart';
+import 'package:g3_project/screens/Settings/main_settings.dart';
 
 import 'package:location/location.dart';
 import 'package:g3_project/screens/Home/home.dart';
@@ -43,6 +44,7 @@ class _ScoreState extends State<Score> {
       Home(),
       Search(),
       Score(),
+      SettingsScreen()
     ];
     setState(() {
       _selectedIndex = index;
@@ -55,20 +57,9 @@ class _ScoreState extends State<Score> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey,
       body: Stack(
         children: [
-          Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Colors.orange[300]!,
-                  Colors.orange[500]!,
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-            ),
-          ),
           SafeArea(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,6 +72,7 @@ class _ScoreState extends State<Score> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      SizedBox(height: 50),
                       Text(
                         "Leaderboard",
                         style: TextStyle(
