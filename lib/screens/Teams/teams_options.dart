@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-class GameScreen extends StatelessWidget {
-  static const String routeName = '/game';
+class TeamsScreen extends StatelessWidget {
+  static const String routeName = '/teams';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.grey,
         centerTitle: true,
-        title:  Text('GAME'),
+        title:  Text('TEAMS'),
       ),
       body: Center(
         child: Column(
@@ -18,7 +18,7 @@ class GameScreen extends StatelessWidget {
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
               onPressed: () {},
-              child: Text('Join Game'),
+              child: Text('Join Team'),
             ),
             SizedBox(height: 32),
             Container(
@@ -41,7 +41,7 @@ class GameScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      'Create a New Game',
+                      'Create a New Team',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,

@@ -39,7 +39,7 @@ class _SettingsScreenState extends State<SettingsScreen>{
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.orange,
+        backgroundColor: Colors.grey,
         title: Center(
           child: Text('Settings'),
         )
@@ -83,7 +83,40 @@ class _SettingsScreenState extends State<SettingsScreen>{
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, Routes.game);
+          showModalBottomSheet(
+            context: context,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(16),
+                topRight: Radius.circular(16),
+              ),
+            ),
+            backgroundColor: Colors.black54,
+            builder: (BuildContext context) {
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ListTile(
+                    title: Center(
+                      child: Text('Game', style: TextStyle(color: Colors.white)),
+                    ),
+                    onTap: () {
+                      Navigator.pushNamed(context, Routes.game);
+                    },
+                  ),
+                  Divider(color: Colors.orange),
+                  ListTile(
+                    title: Center(
+                      child: Text('Team', style: TextStyle(color: Colors.white)),
+                    ),
+                    onTap: () {
+                      Navigator.pushNamed(context, Routes.teams);
+                    },
+                  ),
+                ],
+              );
+            },
+          );
         },
         backgroundColor: Colors.orange,
         child: Icon(Icons.add),
