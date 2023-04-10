@@ -147,7 +147,7 @@ class _SearchState extends State<Search> {
                 children: [
                   ListTile(
                     title: Center(
-                      child: Text('Game', style: TextStyle(color: Colors.white)),
+                      child: Text('Game', style: TextStyle(color: Colors.white, fontSize:18, fontWeight: FontWeight.bold)),
                     ),
                     onTap: () {
                       Navigator.pushNamed(context, Routes.game);
@@ -156,7 +156,7 @@ class _SearchState extends State<Search> {
                   Divider(color: Colors.orange),
                   ListTile(
                     title: Center(
-                      child: Text('Team', style: TextStyle(color: Colors.white)),
+                      child: Text('Team', style: TextStyle(color: Colors.white, fontSize:18, fontWeight: FontWeight.bold)),
                     ),
                     onTap: () {
                       Navigator.pushNamed(context, Routes.teams);

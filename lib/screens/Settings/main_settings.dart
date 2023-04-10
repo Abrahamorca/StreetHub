@@ -37,11 +37,17 @@ class _SettingsScreenState extends State<SettingsScreen>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.grey,
+        backgroundColor: Color(0xFF181818),
         title: Center(
-          child: Text('Settings'),
+          child: Text('Settings', style: TextStyle(
+            fontFamily: "SF Pro Display",
+            color: Colors.white,
+            fontSize: 18.0,
+            fontWeight: FontWeight.bold,
+          ),),
         )
       ),
       body: SingleChildScrollView(
