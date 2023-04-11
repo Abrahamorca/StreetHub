@@ -3,9 +3,12 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:g3_project/routes.dart';
 import 'package:g3_project/screens/Home/score.dart';
 import 'package:g3_project/screens/Home/search.dart';
 import 'package:g3_project/screens/Settings/settings.dart';
+import 'package:g3_project/screens/Matches/options_match.dart';
+import 'package:g3_project/screens/Settings/main_settings.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
 
@@ -60,7 +63,7 @@ class _HomeState extends State<Home> {
       Home(),
       Search(),
       Score(),
-      Settings()
+      SettingsScreen()
     ];
     setState(() {
       _selectedIndex = index;
@@ -140,7 +143,42 @@ class _HomeState extends State<Home> {
         onTap: _onItemTapped,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(16),
+                topRight: Radius.circular(16),
+              ),
+            ),
+            backgroundColor: Colors.black54,
+            builder: (BuildContext context) {
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ListTile(
+                    title: Center(
+                    child: Text('Game', style: TextStyle(color: Colors.white, fontSize:18, fontWeight: FontWeight.bold)),
+                    ),
+                    onTap: () {
+                      Navigator.pushNamed(context, Routes.game);
+                    },
+                  ),
+                  Divider(color: Colors.orange),
+                  ListTile(
+                    title: Center(
+              child: Text('Team', style: TextStyle(color: Colors.white, fontSize:18, fontWeight: FontWeight.bold)),
+              ),
+                    onTap: () {
+                      Navigator.pushNamed(context, Routes.teams);
+                    },
+                  ),
+                ],
+              );
+            },
+          );
+        },
         backgroundColor: Colors.orange,
         child: const Icon(Icons.add),
       ),

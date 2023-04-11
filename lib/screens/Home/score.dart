@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:g3_project/screens/Home/search.dart';
 import 'package:g3_project/screens/Settings/settings.dart';
+import 'package:g3_project/screens/Settings/main_settings.dart';
 
 import 'package:location/location.dart';
 import 'package:g3_project/screens/Home/home.dart';
+
+import '../../routes.dart';
 
 class Score extends StatefulWidget {
   const Score({Key? key}) : super(key: key);
@@ -42,7 +45,7 @@ class _ScoreState extends State<Score> {
       Home(),
       Search(),
       Score(),
-      Settings(),
+      SettingsScreen()
     ];
     setState(() {
       _selectedIndex = index;
@@ -55,82 +58,97 @@ class _ScoreState extends State<Score> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Stack(
-        children: [
-          Positioned.fill(
-            child: Container(
-              color: Colors.grey[300],
-            ),
-          ),
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: MediaQuery.of(context).padding.bottom +
-                kBottomNavigationBarHeight,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(16.0),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: const Radius.circular(16.0),
-                      bottomRight: const Radius.circular(16.0),
-                    ),
-                  ),
-                  child: Text(
+      backgroundColor: Color(0xFF181818),
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24.0, 24.0, 24.0, 12.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+
+                  Text(
                     "Leaderboard",
                     style: TextStyle(
-                      fontSize: 20.0,
+                      fontFamily: "SF Pro Display",
+                      color: Colors.white,
+                      fontSize: 24.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16.0,
-                      vertical: 8.0,
-                    ),
-                    child: ListView.builder(
-                      itemCount: _players.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        final player = _players[index];
-                        return Container(
-                          margin: const EdgeInsets.symmetric(
-                            vertical: 4.0,
-                          ),
-                          padding: const EdgeInsets.all(8.0),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(16.0),
-                          ),
-                          child: ListTile(
-                            leading: Text(
-                              "${index + 1}",
-                              style: TextStyle(fontSize: 16.0),
-                            ),
-                            title: Text(
-                              player.name,
-                              style: TextStyle(fontSize: 16.0),
-                            ),
-                            trailing: Text(
-                              "${player.score}",
-                              style: TextStyle(fontSize: 16.0),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(24.0),
                   ),
                 ),
-              ],
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 8.0,
+                  ),
+                  child: ListView.builder(
+                    itemCount: _players.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final player = _players[index];
+                      return Container(
+                        margin: const EdgeInsets.symmetric(
+                          vertical: 8.0,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          borderRadius: BorderRadius.circular(16.0),
+                        ),
+                        child: ListTile(
+                          leading: Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.orange[500],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                "${index + 1}",
+                                style: TextStyle(
+                                  fontFamily: "SF Pro Display",
+                                  fontSize: 16.0,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          title: Text(
+                            player.name,
+                            style: TextStyle(
+                              fontFamily: "SF Pro Display",
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          trailing: Text(
+                            "${player.score}",
+                            style: TextStyle(
+                              fontFamily: "SF Pro Display",
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -158,7 +176,42 @@ class _ScoreState extends State<Score> {
         onTap: _onItemTapped,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(16),
+                topRight: Radius.circular(16),
+              ),
+            ),
+            backgroundColor: Colors.black54,
+            builder: (BuildContext context) {
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ListTile(
+                    title: Center(
+                      child: Text('Game', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                    ),
+                    onTap: () {
+                      Navigator.pushNamed(context, Routes.game);
+                    },
+                  ),
+                  Divider(color: Colors.orange),
+                  ListTile(
+                    title: Center(
+                      child: Text('Team', style: TextStyle(color: Colors.white, fontSize:18, fontWeight: FontWeight.bold)),
+                    ),
+                    onTap: () {
+                      Navigator.pushNamed(context, Routes.teams);
+                    },
+                  ),
+                ],
+              );
+            },
+          );
+        },
         backgroundColor: Colors.orange,
         child: const Icon(Icons.add),
       ),

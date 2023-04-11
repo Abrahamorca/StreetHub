@@ -10,6 +10,9 @@ import 'package:g3_project/screens/Login/authenticate.dart';
 import 'package:g3_project/screens/Login/register.dart';
 import 'package:g3_project/screens/Login/sign_in.dart';
 import 'package:g3_project/screens/Settings/settings.dart';
+import 'package:g3_project/screens/Matches/options_match.dart';
+import 'package:g3_project/screens/Settings/main_settings.dart';
+import 'package:g3_project/screens/Teams/teams_options.dart';
 import 'package:g3_project/screens/loading.dart';
 import 'package:g3_project/services/auth.dart';
 import 'package:provider/provider.dart';
@@ -41,14 +44,16 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: Routes.loading,
         routes: {
-          Routes.loading: (context) => const Loading(),
-          Routes.home: (context) => const Home(),
-          Routes.authenticate: (context) => const Authenticate(),
+          Routes.loading: (context) => new Loading(),
+          Routes.login: (context) => new Login(),
+          Routes.home: (context) => new Home(),
           //Routes.register: (context) => const Register(toggleView: toggleView,),
-          //Routes.signIn: (context) => const SignIn(toggleView: toggleView,),
-          Routes.search: (context) => const Search(),
-          Routes.score: (context) => const Score(),
-          Routes.settings: (context) => const Settings(),
+          //Routes.signIn: (context) => new SignIn(),
+          Routes.search: (context) => new Search(),
+          Routes.score: (context) => new Score(),
+          Routes.game: (context) => new GameScreen(),
+          Routes.settings: (context) => new SettingsScreen(),
+          Routes.teams: (context) => new TeamsScreen()
         },
       ),
     );
