@@ -1,12 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter/services.dart'; // add this import statement
 import 'package:app_settings/app_settings.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart'; // add this import statement
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../routes.dart';
 import '../Home/home.dart';
 import '../Home/score.dart';
 import '../Home/search.dart';
+import 'package:g3_project/services/auth.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -15,22 +16,20 @@ class SettingsScreen extends StatefulWidget {
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
 }
-class _SettingsScreenState extends State<SettingsScreen>{
-  int _selectedIndex= 3;
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  int _selectedIndex = 3;
+
+  final AuthService _auth = AuthService();
 
   void _onItemTapped(int index) {
-    const List<Widget> Screens = [
-      Home(),
-      Search(),
-      Score(),
-      SettingsScreen()
-    ];
+    const List<Widget> screens = [Home(), Search(), Score(), SettingsScreen()];
     setState(() {
       _selectedIndex = index;
     });
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => Screens[index]),
+      MaterialPageRoute(builder: (context) => screens[index]),
     );
   }
 
@@ -39,26 +38,30 @@ class _SettingsScreenState extends State<SettingsScreen>{
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Color(0xFF181818),
-        title: Center(
-          child: Text('Settings', style: TextStyle(
-            fontFamily: "SF Pro Display",
-            color: Colors.white,
-            fontSize: 18.0,
-            fontWeight: FontWeight.bold,
-          ),),
-        )
-      ),
+          automaticallyImplyLeading: false,
+          backgroundColor: const Color(0xFF181818),
+          title: const Center(
+            child: Text(
+              'Settings',
+              style: TextStyle(
+                fontFamily: "SF Pro Display",
+                color: Colors.white,
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          )),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             _buildNotificationSettings(context),
-            Divider(),
+            const Divider(),
             _buildAppInfo(context),
-            Divider(),
+            const Divider(),
             _buildReportBug(context),
+            const Divider(),
+            _logOutButton(context),
           ],
         ),
       ),
@@ -91,7 +94,7 @@ class _SettingsScreenState extends State<SettingsScreen>{
         onPressed: () {
           showModalBottomSheet(
             context: context,
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(16),
                 topRight: Radius.circular(16),
@@ -103,17 +106,19 @@ class _SettingsScreenState extends State<SettingsScreen>{
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   ListTile(
-                    title: Center(
-                      child: Text('Game', style: TextStyle(color: Colors.white)),
+                    title: const Center(
+                      child:
+                          Text('Game', style: TextStyle(color: Colors.white)),
                     ),
                     onTap: () {
                       Navigator.pushNamed(context, Routes.game);
                     },
                   ),
-                  Divider(color: Colors.orange),
+                  const Divider(color: Colors.orange),
                   ListTile(
-                    title: Center(
-                      child: Text('Team', style: TextStyle(color: Colors.white)),
+                    title: const Center(
+                      child:
+                          Text('Team', style: TextStyle(color: Colors.white)),
                     ),
                     onTap: () {
                       Navigator.pushNamed(context, Routes.teams);
@@ -125,7 +130,7 @@ class _SettingsScreenState extends State<SettingsScreen>{
           );
         },
         backgroundColor: Colors.orange,
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
@@ -133,22 +138,23 @@ class _SettingsScreenState extends State<SettingsScreen>{
 
   Widget _buildNotificationSettings(BuildContext context) {
     return ListTile(
-      leading: Icon(Icons.notifications),
-      title: Text('Notifications'),
-      subtitle: Text('Manage your notification settings'),
+      leading: const Icon(Icons.notifications),
+      title: const Text('Notifications'),
+      subtitle: const Text('Manage your notification settings'),
       trailing: IconButton(
-        icon: Icon(Icons.settings),
+        icon: const Icon(Icons.settings),
         onPressed: () {
           AppSettings.openAppSettings(); // use openAppSettings() method
         },
       ),
     );
   }
+
   Widget _buildAppInfo(BuildContext context) {
     return ListTile(
-      leading: Icon(Icons.info),
-      title: Text('App Info'),
-      subtitle: Text('Version 1.0.0'),
+      leading: const Icon(Icons.info),
+      title: const Text('App Info'),
+      subtitle: const Text('Version 1.0.0'),
       onTap: () {
         // TODO: add logic to navigate to app info screen
       },
@@ -157,9 +163,9 @@ class _SettingsScreenState extends State<SettingsScreen>{
 
   Widget _buildReportBug(BuildContext context) {
     return ListTile(
-      leading: Icon(Icons.bug_report),
-      title: Text('Report a Bug'),
-      subtitle: Text('Found a bug? Report it here.'),
+      leading: const Icon(Icons.bug_report),
+      title: const Text('Report a Bug'),
+      subtitle: const Text('Found a bug? Report it here.'),
       onTap: () async {
         const url = 'https://www.salesianssarria.com/';
         if (await canLaunchUrl(Uri.parse(url))) {
@@ -171,5 +177,14 @@ class _SettingsScreenState extends State<SettingsScreen>{
     );
   }
 
+  Widget _logOutButton(BuildContext context) {
+    return ListTile(
+      leading: const Icon(Icons.logout),
+      title: const Text('Logout'),
+      subtitle: const Text('Exit from the app'),
+      onTap: () async {
+        await _auth.signOut();
+      },
+    );
+  }
 }
-

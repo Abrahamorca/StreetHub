@@ -15,7 +15,6 @@ class Routes {
   static const String loading = Loading.routeName;
   static const String authenticate = Authenticate.routeName;
   static const String register = Register.routeName;
-  static const String settings = Settings.routeName;
   static const String home = Home.routeName;
   static const String search = Search.routeName;
   static const String score = Score.routeName;

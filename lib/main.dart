@@ -44,16 +44,15 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: Routes.loading,
         routes: {
-          Routes.loading: (context) => new Loading(),
-          Routes.login: (context) => new Login(),
-          Routes.home: (context) => new Home(),
+          Routes.loading: (context) => const Loading(),
+          Routes.home: (context) => const Home(),
           //Routes.register: (context) => const Register(toggleView: toggleView,),
           //Routes.signIn: (context) => new SignIn(),
-          Routes.search: (context) => new Search(),
-          Routes.score: (context) => new Score(),
-          Routes.game: (context) => new GameScreen(),
-          Routes.settings: (context) => new SettingsScreen(),
-          Routes.teams: (context) => new TeamsScreen()
+          Routes.search: (context) => const Search(),
+          Routes.score: (context) => const Score(),
+          Routes.game: (context) => GameScreen(),
+          Routes.settings: (context) => const SettingsScreen(),
+          Routes.teams: (context) => TeamsScreen(),
         },
       ),
     );
