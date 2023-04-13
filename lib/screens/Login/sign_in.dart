@@ -27,7 +27,7 @@ class _SignInState extends State<SignIn> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: const Color(backgroundLoginColor),
+        backgroundColor: const Color(backgroundLoginColor),
       body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
@@ -44,7 +44,6 @@ class _SignInState extends State<SignIn> {
                 decoration: new BoxDecoration(
                   color: Color.fromRGBO(231, 186, 118, 1),
                   borderRadius: BorderRadius.circular(30),
-                  //border: Border.all(width: 2.0, color: Colors.black),
                 ),
                 child: Center(child: Text('Welcome', style: TextStyle(color: Colors.black, fontWeight: FontWeight.w900, fontSize: 25),),),
               ),
@@ -81,7 +80,8 @@ class _SignInState extends State<SignIn> {
                         filled: true,
                         fillColor: Colors.white,
                         border: OutlineInputBorder(
-                            borderRadius:BorderRadius.circular(55.0)),
+                            borderRadius:BorderRadius.circular(55.0),
+                       ),
                         hintText: 'Password',
 
                       ),
@@ -99,11 +99,7 @@ class _SignInState extends State<SignIn> {
                     ),
                   ],),
               ),
-
-
-
               const SizedBox(height: 40),
-
               // Sign in Button
               ElevatedButton(
                 onPressed: () async {
@@ -154,16 +150,17 @@ class _SignInState extends State<SignIn> {
               ),
               Divider(indent: 50, endIndent: 50,thickness: 1, color: Colors.black),
 
-              TextButton(
+              Padding(padding: EdgeInsets.only(left: 25, right: 25, top:  20),
+              child: TextButton(
                 onPressed: () {
                   widget.toggleView();
-                },
-                style: ButtonStyle(foregroundColor:MaterialStatePropertyAll(Colors.deepOrange), backgroundColor: MaterialStatePropertyAll(Colors.white70), shape: shape: MaterialStateProperty.all(
-                RoundedRectangleBorder(
-                // Change your radius here
-                borderRadius: BorderRadius.circular(16),
-              ),
-        ) , ),
+                }, style: ButtonStyle(foregroundColor:MaterialStatePropertyAll(Color(signInButtonColor)), backgroundColor: MaterialStatePropertyAll(Colors.white), shape:  MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    // Change your radius here
+                    borderRadius: BorderRadius.circular(16),
+
+                  ),
+                ) , ),
                 child: Row(
 
                   children: const [
@@ -171,7 +168,9 @@ class _SignInState extends State<SignIn> {
                     Text('U don\'t have an account? Register now!'),
                   ],
                 ),
-              )
+              ),),
+
+
             ], // Column children
           ),
         ),

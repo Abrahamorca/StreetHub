@@ -27,16 +27,31 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(backgroundLoginColor),
+      resizeToAvoidBottomInset: false,
       body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("assets/images/dottedcircle_background.png"),
+              fit: BoxFit.fill
+          ),
+        ),
         padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 50),
         child: Form(
           key: _formKey,
           child: Column(
             children: [
-              const SizedBox(height: 20),
-
+              const SizedBox(height: 180),
               //Mail Field
               TextFormField(
+                textAlign: TextAlign.center,
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(vertical: 0),
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                      borderRadius:BorderRadius.circular(55.0)),
+                  hintText: 'Email',
+                ),
                 validator: (val) {
                   if (val!.isEmpty) {
                     return 'Please enter some text';
@@ -52,6 +67,16 @@ class _RegisterState extends State<Register> {
 
               //Password field
               TextFormField(
+                textAlign: TextAlign.center,
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(vertical: 0),
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                    borderRadius:BorderRadius.circular(55.0),
+                  ),
+                  hintText: 'Password',
+                ),
                 validator: (val) {
                   if (val!.length < 6) {
                     return 'Enter a password 6+ characters long';
@@ -97,17 +122,24 @@ class _RegisterState extends State<Register> {
                 style: const TextStyle(color: Colors.red, fontSize: 14),
               ),
 
-              //Toggle forms button
+          Padding(padding: EdgeInsets.only(left: 2, right: 120),
+            child:
               TextButton(
                 onPressed: () {
                   widget.toggleView();
                 },
+                style: ButtonStyle(foregroundColor:MaterialStatePropertyAll(Color(signInButtonColor)), backgroundColor: MaterialStatePropertyAll(Colors.white), shape:  MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    // Change your radius here
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                ) , ),
                 child: Row(
                   children: const [
                     Icon(Icons.person),
                     Text('Go to Sign In'),
                   ],
-                ),
+                ),),
               )
             ], // Column children
           ),

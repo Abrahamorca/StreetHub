@@ -83,8 +83,67 @@ class _HomeState extends State<Home> {
     }
   }
 
+
+
+  List<Map<String, dynamic>> basketballCourts = [
+    {
+      'name': 'Pista de bàsquet de la Barceloneta',
+      'lat': 41.3809186,
+      'lng': 2.1936737,
+    },
+    {
+      'name': 'Pista de bàsquet de la Mar Bella',
+      'lat': 41.4080486,
+      'lng': 2.2180109,
+    },
+    {
+      'name': 'Pista de bàsquet de Sants',
+      'lat': 41.3773509,
+      'lng': 2.1393465,
+    },
+    {
+      'name': 'Pista de bàsquet del Parc de la Ciutadella',
+      'lat': 41.3897372,
+      'lng': 2.1849918,
+    },
+  ];
+
+
+
+
   @override
   Widget build(BuildContext context) {
+
+    List<Marker> basketballMarkers = basketballCourts.map((court) {
+      return Marker(
+        width: 80.0,
+        height: 80.0,
+        point: LatLng(court['lat'], court['lng']),
+        builder: (ctx) => GestureDetector(
+          onTap: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text(court['name']),
+                  content: Text(court['info']), // aquí es pot afegir informació addicional
+                  actions: [
+                    TextButton(onPressed: (){}, child: Text('Iniciar partit')),
+                    TextButton(
+                      child: const Text('Tancar'),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ],
+                );
+              },
+            );
+          },
+          child: const Icon(Icons.location_pin, color: Colors.orange, size: 30,),
+        ),
+      );
+    }).toList();
 
     return Scaffold(
       body: _locationData == null
@@ -111,8 +170,9 @@ class _HomeState extends State<Home> {
                 height: 80.0,
                 point: LatLng(
                     _locationData!.latitude!, _locationData!.longitude!),
-                builder: (ctx) => const Icon(Icons.sports_basketball, color: Colors.orange),
+                builder: (ctx) => const Icon(Icons.person_pin, color: Colors.black, size: 30,),
               ),
+             ...basketballMarkers,
             ],
           ),
         ],
