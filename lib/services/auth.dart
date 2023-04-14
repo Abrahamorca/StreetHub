@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:g3_project/models/user.dart';
+import 'package:g3_project/services/database.dart';
+import 'package:latlng/latlng.dart';
 
 class AuthService {
   /* Generating the variable that will communicate with
@@ -62,6 +64,9 @@ class AuthService {
           email: email, password: password);
       User? user = result.user;
 
+      //create a new document for the user with the uid
+      //TODO: Add the current location of the device into the function
+      await DataBaseService(uid: user!.uid).updateUserData(DateTime.now().toString(),'41.39433770435271', '2.1279648588561013');
       return _userFromFirebaseUser(user!);
     } catch (e) {
       if (kDebugMode) {

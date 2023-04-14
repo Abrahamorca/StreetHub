@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:g3_project/screens/Login/sign_in.dart';
+import 'package:g3_project/screens/loading.dart';
 import 'package:g3_project/services/auth.dart';
 
 class Settings extends StatefulWidget {
@@ -26,6 +27,12 @@ class _SettingsState extends State<Settings> {
           TextButton(
               onPressed: () async {
                 await _auth.signOut();
+
+                if (!mounted) return;
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Loading()),
+                );
               },
               child: const Icon(Icons.logout)),
         ],
