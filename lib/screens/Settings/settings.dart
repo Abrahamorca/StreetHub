@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:g3_project/routes.dart';
 import 'package:g3_project/screens/Login/sign_in.dart';
 import 'package:g3_project/services/auth.dart';
 
@@ -26,6 +27,7 @@ class _SettingsState extends State<Settings> {
           TextButton(
               onPressed: () async {
                 await _auth.signOut();
+                Navigator.pushNamed(context, Routes.signIn);
               },
               child: const Icon(Icons.logout)),
         ],

@@ -9,6 +9,7 @@ import 'package:g3_project/screens/Settings/main_settings.dart';
 import 'package:g3_project/screens/Teams/teams_options.dart';
 import 'package:g3_project/screens/loading.dart';
 import 'package:g3_project/screens/Matches/options_match.dart';
+import 'package:g3_project/screens/Matches/counter.dart';
 
 class Routes {
   static const String signIn = SignIn.routeName;
@@ -21,4 +22,5 @@ class Routes {
   static const String game = GameScreen.routeName;
   static const String settings = SettingsScreen.routeName;
   static const String teams = TeamsScreen.routeName;
+  static const String counter = BasketballMatchMarkerScreen.routeName;
 }

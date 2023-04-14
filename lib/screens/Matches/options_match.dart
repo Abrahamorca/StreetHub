@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:g3_project/routes.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class GameScreen extends StatelessWidget {
@@ -17,7 +18,9 @@ class GameScreen extends StatelessWidget {
           children: [
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, Routes.counter);
+              },
               child: Text('Join Game'),
             ),
             SizedBox(height: 32),

@@ -184,6 +184,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       subtitle: const Text('Exit from the app'),
       onTap: () async {
         await _auth.signOut();
+        Navigator.pushNamed(context, Routes.loading);
       },
     );
   }
