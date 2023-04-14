@@ -83,8 +83,123 @@ class _HomeState extends State<Home> {
     }
   }
 
+
+
+  List<Map<String, dynamic>> basketballCourts = [
+    {
+      'name': 'Pista de bàsquet de la Sagrada Família',
+      'lat': 41.404927,
+      'lng': 2.175938,
+      'info': 'Pista de bàsquet de la Sagrada Família és una pista molt ben ubicada i accessible.'
+    },
+    {
+      'name': 'Pista de bàsquet del Parc de la Creueta del Coll',
+      'lat': 41.425244,
+      'lng': 2.149289,
+      'info': 'Pista de bàsquet del Parc de la Creueta del Coll és una pista situada en un parc amb molts serveis.'
+    },
+    {
+      'name': 'Pista de bàsquet del Parc de la Pegaso',
+      'lat': 41.434442,
+      'lng': 2.196001,
+      'info': 'Pista de bàsquet del Parc de la Pegaso és una pista situada en un parc tranquil.'
+    },
+    {
+      'name': 'Pista de bàsquet del Parc de l\'Espanya Industrial',
+    'lat': 41.375703,
+      'lng': 2.149489,
+      'info': 'Pista de bàsquet del Parc de l\'Espanya Industrial és una pista ben equipada.'
+    },
+    {
+      'name': 'Pista de bàsquet de la Barceloneta',
+      'lat': 41.3809186,
+      'lng': 2.1936737,
+      'info': 'Pista de bàsquet de la Barceloneta és una de les pistes més populars a prop del mar.'
+    },
+    {
+      'name': 'Pista de bàsquet del Parc de la Zona Franca',
+      'lat': 41.356855,
+      'lng': 2.126455,
+      'info': 'Pista de bàsquet del Parc de la Zona Franca és una pista ben ubicada i accessible.'
+    },
+    {
+      'name': 'Pista de bàsquet del Parc de les Aigües',
+      'lat': 41.413491,
+      'lng': 2.143692,
+      'info': 'Pista de bàsquet del Parc de les Aigües és una pista situada en un parc amb molts serveis.'
+    },
+    {
+      'name': 'Pista de bàsquet del Parc de les Rieres',
+      'lat': 41.402418,
+      'lng': 2.172109,
+      'info': 'Pista de bàsquet del Parc de les Rieres és una pista ben equipada i neta.'
+    },
+    {
+      'name': 'Pista de bàsquet de la Mar Bella',
+      'lat': 41.4080486,
+      'lng': 2.2180109,
+      'info': 'Pista de bàsquet de la Mar Bella és coneguda per ser una de les més grans de Barcelona.'
+    },
+    {
+      'name': 'Pista de bàsquet de Sants',
+      'lat': 41.3773509,
+      'lng': 2.1393465,
+      'info': 'Pista de bàsquet de Sants és un lloc popular per als amants del bàsquet.'
+    },
+    {
+      'name': 'Pista de bàsquet del Parc de la Ciutadella',
+      'lat': 41.3897372,
+      'lng': 2.1849918,
+      'info': 'Pista de bàsquet del Parc de la Ciutadella és una de les pistes més cèntriques de la ciutat.'
+    },
+    {
+      'name': 'Pista de bàsquet del Parc de la Trinitat',
+      'lat': 41.440535,
+      'lng': 2.209355,
+      'info': 'Pista de bàsquet del Parc de la Trinitat és una pista gran amb moltes opcions per jugar a bàsquet.'
+    },
+    {
+      'name': 'Pista de bàsquet de la Barceloneta 2',
+      'lat': 41.381396,
+      'lng': 2.197228,
+      'info': 'Pista de bàsquet de la Barceloneta 2 és una pista petita però acollidora.'
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
+    List<Marker> basketballMarkers = basketballCourts.map((court) {
+      return Marker(
+        width: 80.0,
+        height: 80.0,
+        point: LatLng(court['lat'], court['lng']),
+        builder: (ctx) => GestureDetector(
+          onTap: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text(court['name']),
+                  content: Text(court['info']), // aquí es pot afegir informació addicional
+                  actions: [
+                    TextButton(onPressed: (){
+                      Navigator.pushNamed(context, Routes.game);
+                    }, child: Text('Iniciar partit')),
+                    TextButton(
+                      child: const Text('Tancar'),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ],
+                );
+              },
+            );
+          },
+          child: const Icon(Icons.location_pin, color: Colors.orange, size: 30,),
+        ),
+      );
+    }).toList();
 
     return Scaffold(
       body: _locationData == null
@@ -111,8 +226,9 @@ class _HomeState extends State<Home> {
                 height: 80.0,
                 point: LatLng(
                     _locationData!.latitude!, _locationData!.longitude!),
-                builder: (ctx) => const Icon(Icons.sports_basketball, color: Colors.orange),
+                builder: (ctx) => const Icon(Icons.person_pin, color: Colors.black, size: 30,),
               ),
+             ...basketballMarkers,
             ],
           ),
         ],

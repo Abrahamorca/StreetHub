@@ -26,46 +26,80 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(backgroundLoginColor),
+      resizeToAvoidBottomInset: false,
+        backgroundColor: const Color(backgroundLoginColor),
       body: Container(
-        padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 50),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/dottedcircle_background.png"),
+              fit: BoxFit.fill
+            ),
+          ),
         child: Form(
           key: _formKey,
           child: Column(
             children: [
-              const SizedBox(height: 20),
-
-              //Mail Field
-              TextFormField(
-                validator: (val) {
-                  if (val!.isEmpty) {
-                    return 'Please enter some text';
-                  } else {
-                    return null;
-                  }
-                },
-                onChanged: (val) {
-                  setState(() => email = val);
-                },
+              const SizedBox(height:90),
+              Container(width: 260, height: 65,
+                decoration: new BoxDecoration(
+                  color: Color.fromRGBO(231, 186, 118, 1),
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: Center(child: Text('Welcome', style: TextStyle(color: Colors.black, fontWeight: FontWeight.w900, fontSize: 25),),),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height:70),
+              Padding(padding: EdgeInsets.only(left: 35, right: 35),
+                  child: Column(children: <Widget>[
+                    TextFormField(
+                      textAlign: TextAlign.center,
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(vertical: 0),
+                        filled: true,
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(
+                            borderRadius:BorderRadius.circular(55.0)),
+                        hintText: 'Email',
+                      ),
+                      validator: (val) {
+                        if (val!.isEmpty) {
+                          return 'Please enter some text';
+                        } else {
+                          return null;
+                        }
+                      },
+                      onChanged: (val) {
+                        setState(() => email = val);
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                    //Password field
+                    TextFormField(
+                      textAlign: TextAlign.center,
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(vertical: 0),
+                        filled: true,
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(
+                            borderRadius:BorderRadius.circular(55.0),
+                       ),
+                        hintText: 'Password',
 
-              //Password field
-              TextFormField(
-                validator: (val) {
-                  if (val!.length < 6) {
-                    return 'Enter a password 6+ characters long';
-                  } else {
-                    return null;
-                  }
-                },
-                obscureText: true,
-                onChanged: (val) {
-                  setState(() => password = val);
-                },
+                      ),
+                      validator: (val) {
+                        if (val!.length < 6) {
+                          return 'Enter a password 6+ characters long';
+                        } else {
+                          return null;
+                        }
+                      },
+                      obscureText: true,
+                      onChanged: (val) {
+                        setState(() => password = val);
+                      },
+                    ),
+                  ],),
               ),
-              const SizedBox(height: 20),
-
+              const SizedBox(height: 40),
               // Sign in Button
               ElevatedButton(
                 onPressed: () async {
@@ -79,11 +113,18 @@ class _SignInState extends State<SignIn> {
                     }
                   }
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(signInButtonColor),
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all(
+                    RoundedRectangleBorder(
+                      // Change your radius here
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                  ) ,
+                  backgroundColor: MaterialStatePropertyAll(const Color(signInButtonColor)),
                 ),
                 child: const Text(
-                  'Sign In',
+                  'Log in',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
 
@@ -96,18 +137,40 @@ class _SignInState extends State<SignIn> {
                 style: const TextStyle(color: Colors.red, fontSize: 14),
               ),
 
-              //Toggle forms button
-              TextButton(
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                'or',
+                style: const TextStyle(color: Colors.black, fontSize: 15),
+              ),
+              Divider(indent: 20, endIndent: 20,thickness: 1, color: Colors.black),
+              const SizedBox(
+                height: 5,
+              ),
+              Divider(indent: 50, endIndent: 50,thickness: 1, color: Colors.black),
+
+              Padding(padding: EdgeInsets.only(left: 25, right: 25, top:  20),
+              child: TextButton(
                 onPressed: () {
                   widget.toggleView();
-                },
+                }, style: ButtonStyle(foregroundColor:MaterialStatePropertyAll(Color(signInButtonColor)), backgroundColor: MaterialStatePropertyAll(Colors.white), shape:  MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    // Change your radius here
+                    borderRadius: BorderRadius.circular(16),
+
+                  ),
+                ) , ),
                 child: Row(
+
                   children: const [
                     Icon(Icons.person),
-                    Text('Go to register'),
+                    Text('U don\'t have an account? Register now!'),
                   ],
                 ),
-              )
+              ),),
+
+
             ], // Column children
           ),
         ),

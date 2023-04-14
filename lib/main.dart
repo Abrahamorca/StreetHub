@@ -9,6 +9,7 @@ import 'package:g3_project/screens/Home/search.dart';
 import 'package:g3_project/screens/Login/authenticate.dart';
 import 'package:g3_project/screens/Login/register.dart';
 import 'package:g3_project/screens/Login/sign_in.dart';
+import 'package:g3_project/screens/Matches/counter.dart';
 import 'package:g3_project/screens/Settings/settings.dart';
 import 'package:g3_project/screens/Matches/options_match.dart';
 import 'package:g3_project/screens/Settings/main_settings.dart';
@@ -47,12 +48,13 @@ class MyApp extends StatelessWidget {
           Routes.loading: (context) => const Loading(),
           Routes.home: (context) => const Home(),
           //Routes.register: (context) => const Register(toggleView: toggleView,),
-          //Routes.signIn: (context) => new SignIn(),
+          //Routes.signIn: (context) => new SignIn(toggleView: null,),
           Routes.search: (context) => const Search(),
           Routes.score: (context) => const Score(),
           Routes.game: (context) => GameScreen(),
           Routes.settings: (context) => const SettingsScreen(),
           Routes.teams: (context) => TeamsScreen(),
+          Routes.counter: (context) => const BasketballMatchMarkerScreen(),
         },
       ),
     );
