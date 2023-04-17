@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:g3_project/routes.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
 class GameScreen extends StatelessWidget {
   static const String routeName = '/game';
+  final String collectionId = 'Gu7W4985AZVfnggYHdEgSGiGcs82';
+  late final String gameID;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,8 +22,14 @@ class GameScreen extends StatelessWidget {
           children: [
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
-              onPressed: () {
-                Navigator.pushNamed(context, Routes.counter);
+              onPressed: () async {
+                gameID = await FlutterBarcodeScanner.scanBarcode('black', 'EXIT', true, ScanMode.QR);
+                if(gameID != null  && gameID.isNotEmpty){
+                  Navigator.pushNamed(context, Routes.counter);
+                  gameID = "";
+                }
+
+
               },
               child: Text('Join Game'),
             ),
@@ -52,7 +62,7 @@ class GameScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 16),
                     QrImage(
-                      data: 'https://your-game-url.com', // Replace with your game URL
+                      data:collectionId, // Replace with your game URL
                       version: QrVersions.auto,
                       size: 200.0,
                     ),
